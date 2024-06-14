@@ -1,0 +1,51 @@
+[
+    {
+      "title": "Cris Gova Video Editor",
+      "description": "A video editor portfolio with an integrated blog, featuring an administration area by Express and MongoDB for content creation via a RESTful API",
+      "technologies": ["HTML5", "Javascript", "Css3", "Express", "Node", "Docker", "MongoDb", "RESTful API"],
+      "image": "../../assets/img/cristina_gomez.png",
+      "link": "https://www.crisgova.org/",
+      "github": "https://github.com/MigVarona/VideoEditor-Portfolio-wBlog"
+    },
+    {
+      "title": "Agencia de empleo",
+      "description": "Immersive VR experience provided by the employment agency, featuring an OpenAI-trained avatar, with an administration interface to modify all scene content via API.",
+      "technologies": ["HTML5", "Javascript", "React Vite", "ThreeJs", "Express", "MongoDb", "OpenAI", "Cypress"],
+      "image": "../../assets/img/avatar_ae360.png",
+      "link": "https://ae360.vercel.app/",
+      "github": "https://github.com/MigVarona/Agencia-Empleo-Inmersivo-Avatar"
+    },
+    {
+      "title": "Retiro 360",
+      "description": "Inmersive 360 virtual tour combining Three Js responsive-based technologies with schedule of activities and exhibitions.",
+      "technologies": ["HTML5", "Javascript", "Css3", "Responsive", "Tailwind", "A-Frame"],
+      "image": "../assets/img/work2.png",
+      "link": "https://retiro360.netlify.app/",
+      "github": "https://github.com/MigVarona/Retiro360"
+    },
+    {
+      "title": "Viva-Film",
+      "description": "Viva Film is a web project that showcases a film community platform, highlighting film examples, cameras and lenses.",
+      "technologies": ["HTML5", "Javascript", "Css3", "Responsive", "Bootstrap", "Api Unsplash"],
+      "image": "../assets/img/film.png",
+      "link": "https://migvarona.github.io/vivafilm/",
+      "github": "https://github.com/MigVarona/vivafilm"
+    },
+    {
+      "title": "Next Play",
+      "description": "Is an minimalism aesthetically pleasing and responsive web music application built using Next.js, Tailwind CSS, Spotify and the Unsplash API.",
+      "technologies": ["JavaScript", "NextJs", "Tailwind", "Html5", "CSS3", "React"],
+      "image": "../assets/img/next.png",
+      "link": "https://nextmusic-eosin.vercel.app/",
+      "github": "https://github.com/MigVarona/nextmusic"
+    },
+    {
+      "title": "Nasa Api",
+      "description": "Project implemented in React with Next.js, focusing on information services via NASA API, integrating the Picture of the Day, EPIC camera, and data files, styled with Tailwind.",
+      "technologies": ["HTML5", "CSS3", "Nextjs", "React", "Tailwind", "API NASA"],
+      "image": "../assets/img/nasa.png",
+      "link": "https://nasapi.vercel.app/",
+      "github": "https://github.com/MigVarona/Daiyu-galaxy"
+    }
+  ]
+  
