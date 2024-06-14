@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from config import Config  # Importa la clase Config desde config.py
+from config import Config 
 import os
 
 app = Flask(__name__)
