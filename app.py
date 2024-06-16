@@ -1,24 +1,25 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from config import Config 
+from config import Config
 import os
 
 app = Flask(__name__)
-app.config.from_object(Config)  
+app.config.from_object(Config)
 
 mongo = PyMongo(app)
 db = mongo.db
 
 # Define the Project schema
 class Project:
-    def __init__(self, title, description, technologies, image, link, github):
+    def __init__(self, title, description, technologies, image, link, github, technologies2):
         self.title = title
         self.description = description
         self.technologies = technologies
         self.image = image
         self.link = link
         self.github = github
+        self.technologies2 = technologies2
 
     def to_json(self):
         return {
@@ -27,7 +28,8 @@ class Project:
             "technologies": self.technologies,
             "image": self.image,
             "link": self.link,
-            "github": self.github
+            "github": self.github,
+            "technologies2": self.technologies2
         }
 
 @app.route('/projects', methods=['GET'])
@@ -55,6 +57,7 @@ def add_project():
         title=data['title'],
         description=data['description'],
         technologies=data['technologies'],
+        technologies2=data['technologies2'],
         image=data['image'],
         link=data['link'],
         github=data['github']
@@ -69,6 +72,7 @@ def update_project(id):
         "title": data['title'],
         "description": data['description'],
         "technologies": data['technologies'],
+        "technologies2": data['technologies2'],
         "image": data['image'],
         "link": data['link'],
         "github": data['github']
