@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 from config import Config
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -64,11 +65,11 @@ def add_project():
         title=data['title'],
         description=data['description'],
         technologies=data['technologies'],
-        technologies2=data('technologies2'),
+        technologies2=data.get('technologies2'),
         image=data['image'],
         link=data['link'],
         github=data['github'],
-        github2=data('github2')
+        github2=data.get('github2')
     )
     project_id = db.projects.insert_one(new_project.to_json()).inserted_id
     return jsonify({"_id": str(project_id)})
@@ -124,4 +125,7 @@ def test_email():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Configura el puerto dinámicamente desde la variable de entorno PORT
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
+
