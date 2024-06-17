@@ -9,8 +9,8 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
-# Expone el puerto en el que la aplicación correrá
-EXPOSE 5000
+# Expone el puerto en el que la aplicación correrá (en este caso, 0)
+EXPOSE 0
 
 # Define el comando de arranque
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:$PORT", "wsgi:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:0", "wsgi:app"]
