@@ -6,7 +6,6 @@ from config import Config
 import os
 from flask_cors import CORS
 
-
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -14,8 +13,7 @@ mail = Mail(app)
 mongo = PyMongo(app)
 db = mongo.db
 
-CORS(app)  # Habilita CORS para toda la aplicación
-
+CORS(app)
 
 class Project:
     def __init__(self, title, description, technologies, image, link, github, technologies2):
@@ -93,17 +91,15 @@ def delete_project(id):
 
 @app.route('/send-email', methods=['POST'])
 def send_email():
-    data = request.get_json()
-    subject = "Mensaje de contacto" 
-    sender = app.config['MAIL_USERNAME']  
-    recipients = [data['email']] 
-
-    # Crea el mensaje de correo
-    msg = Message(subject, sender=sender, recipients=recipients)
-    msg.body = f"Nombre: {data['name']}\nEmail: {data['email']}\n\nMensaje:\n{data['message']}"
-
     try:
-        mail.send(msg)  # Envía el correo
+        data = request.get_json()
+        msg = Message(
+            "New Contact Form Submission",
+            sender=app.config['MAIL_USERNAME'],
+            recipients=[app.config['MAIL_USERNAME']]
+        )
+        msg.body = f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
+        mail.send(msg)
         return jsonify({"message": "Email sent"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -115,7 +111,7 @@ def test_email():
         msg = Message(
             subject="Test Email",
             sender=app.config['MAIL_USERNAME'],
-            recipients=[app.config['MAIL_USERNAME']],  # Enviando a ti mismo para probar
+            recipients=[app.config['MAIL_USERNAME']],
             body="This is a test email sent from Flask."
         )
         mail.send(msg)
