@@ -1,5 +1,17 @@
 {
     "cSpell.words": [
-        "jsonify"
+        "beautifulsoup",
+        "certifi",
+        "colorama",
+        "dnspython",
+        "dotenv",
+        "gunicorn",
+        "idna",
+        "itsdangerous",
+        "jsonify",
+        "pymongo",
+        "soupsieve",
+        "urllib",
+        "Werkzeug"
     ]
 }

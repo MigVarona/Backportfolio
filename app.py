@@ -3,7 +3,6 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 from config import Config
-import os
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -16,25 +15,29 @@ db = mongo.db
 CORS(app)
 
 class Project:
-    def __init__(self, title, description, technologies, image, link, github, technologies2):
+    def __init__(self, title, description, technologies, image, link, github, github2=None, technologies2=None):
         self.title = title
         self.description = description
         self.technologies = technologies
         self.image = image
         self.link = link
         self.github = github
+        self.github2 = github2
         self.technologies2 = technologies2
 
     def to_json(self):
-        return {
+        project_data = {
             "title": self.title,
             "description": self.description,
             "technologies": self.technologies,
             "image": self.image,
             "link": self.link,
             "github": self.github,
-            "technologies2": self.technologies2
+            "github2": self.github2
         }
+        if self.technologies2:
+            project_data["technologies2"] = self.technologies2
+        return project_data
 
 @app.route('/projects', methods=['GET'])
 def get_projects():
@@ -61,10 +64,11 @@ def add_project():
         title=data['title'],
         description=data['description'],
         technologies=data['technologies'],
-        technologies2=data['technologies2'],
+        technologies2=data('technologies2'),
         image=data['image'],
         link=data['link'],
-        github=data['github']
+        github=data['github'],
+        github2=data('github2')
     )
     project_id = db.projects.insert_one(new_project.to_json()).inserted_id
     return jsonify({"_id": str(project_id)})
@@ -76,10 +80,11 @@ def update_project(id):
         "title": data['title'],
         "description": data['description'],
         "technologies": data['technologies'],
-        "technologies2": data['technologies2'],
+        "technologies2": data.get('technologies2'),
         "image": data['image'],
         "link": data['link'],
-        "github": data['github']
+        "github": data['github'],
+        "github2": data.get('github2')
     }
     db.projects.update_one({"_id": ObjectId(id)}, {"$set": updated_project})
     return jsonify({"message": "Project updated"})
@@ -103,7 +108,6 @@ def send_email():
         return jsonify({"message": "Email sent"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 @app.route('/test-email', methods=['GET'])
 def test_email():
